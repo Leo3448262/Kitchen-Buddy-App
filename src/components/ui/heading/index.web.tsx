@@ -1,7 +1,6 @@
-
-import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import React, { forwardRef, memo } from 'react';
-import { headingStyle } from './styles';
+import type {VariantProps} from '@gluestack-ui/nativewind-utils';
+import React, {forwardRef, memo} from 'react';
+import {headingStyle} from './styles';
 type IHeadingProps = VariantProps<typeof headingStyle> &
   React.ComponentPropsWithoutRef<'h1'> & {
     as?: React.ElementType;
@@ -21,7 +20,7 @@ const MappedHeading = memo(
       highlight,
       ...props
     },
-    ref
+    ref,
   ) {
     switch (size) {
       case '5xl':
@@ -154,13 +153,13 @@ const MappedHeading = memo(
           />
         );
     }
-  })
+  }),
 );
 
 const Heading = memo(
   forwardRef<HTMLHeadingElement, IHeadingProps>(function Heading(
-    { className, size = 'lg', as: AsComp, ...props },
-    ref
+    {className, size = 'lg', as: AsComp, ...props},
+    ref,
   ) {
     const {
       isTruncated,
@@ -195,11 +194,9 @@ const Heading = memo(
     return (
       <MappedHeading className={className} size={size} ref={ref} {...props} />
     );
-  })
+  }),
 );
 
 Heading.displayName = 'Heading';
 
-export { Heading };
-
- 
+export {Heading};

@@ -1,19 +1,13 @@
 // screens/BarcodeScannerScreen.tsx
-import { useNavigation, useRoute } from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {
-    BarcodeScanningResult,
-    CameraType,
-    CameraView,
-    useCameraPermissions,
+  BarcodeScanningResult,
+  CameraType,
+  CameraView,
+  useCameraPermissions,
 } from 'expo-camera';
-import React, { useState } from 'react';
-import {
-    Alert,
-    Button,
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Alert, Button, StyleSheet, Text, View} from 'react-native';
 
 export default function BarcodeScannerScreen() {
   /* ─── state & nav ─────────────────────────────── */
@@ -37,13 +31,13 @@ export default function BarcodeScannerScreen() {
   }
 
   /* ─── scan handler ────────────────────────────── */
-  const handleBarcodeScanned = async ({ data }: BarcodeScanningResult) => {
+  const handleBarcodeScanned = async ({data}: BarcodeScanningResult) => {
     if (scanned) return;
     setScanned(true);
 
     try {
       const res = await fetch(
-        `https://world.openfoodfacts.org/api/v0/product/${data}.json`
+        `https://world.openfoodfacts.org/api/v0/product/${data}.json`,
       );
       const json = await res.json();
 
@@ -91,8 +85,8 @@ export default function BarcodeScannerScreen() {
 
 /* ─── styles ────────────────────────────────────── */
 const styles = StyleSheet.create({
-  flex: { flex: 1 },
-  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  flex: {flex: 1},
+  center: {flex: 1, justifyContent: 'center', alignItems: 'center'},
   overlay: {
     position: 'absolute',
     bottom: 40,

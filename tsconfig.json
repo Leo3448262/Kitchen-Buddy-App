@@ -4,10 +4,7 @@
     "strict": true,
     "jsx": "react-native",
     "paths": {
-      "@/*": [
-        "./*",
-        "./src/components/ui/gluestack-ui-provider",
-      ]
+      "@/*": ["./*", "./src/components/ui/gluestack-ui-provider"]
     }
   },
   "include": [

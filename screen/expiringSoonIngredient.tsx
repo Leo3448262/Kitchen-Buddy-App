@@ -1,10 +1,10 @@
 // components/ExpiringSoonGrouped.tsx
 import React from 'react';
-import { ScrollView } from 'react-native';
-import { useIngredientContext } from '../context/IngredientContext';
-import { Card } from '../src/components/ui/card';
-import { Text } from '../src/components/ui/text';
-import { VStack } from '../src/components/ui/vstack';
+import {ScrollView} from 'react-native';
+import {useIngredientContext} from '../context/IngredientContext';
+import {Card} from '../src/components/ui/card';
+import {Text} from '../src/components/ui/text';
+import {VStack} from '../src/components/ui/vstack';
 
 // Helper to calculate days left until expiry
 const getDaysLeft = (ingredient: any): number | null => {
@@ -23,20 +23,20 @@ const getDaysLeft = (ingredient: any): number | null => {
 const groupByExpiry = (ingredients: any[]) => {
   const groups: Record<string, any[]> = {};
 
-  ingredients.forEach((item) => {
+  ingredients.forEach(item => {
     const days = getDaysLeft(item);
-    let label = "";
+    let label = '';
 
     if (days === null) {
-      label = "Unknown";
+      label = 'Unknown';
     } else if (days <= 0) {
-      label = "Expired";
+      label = 'Expired';
     } else if (days === 1) {
-      label = "In 1 day";
+      label = 'In 1 day';
     } else if (days <= 3) {
-      label = "In 1–3 days";
+      label = 'In 1–3 days';
     } else if (days <= 7) {
-      label = "In 4–7 days";
+      label = 'In 4–7 days';
     } else {
       label = `In ${days} days`;
     }
@@ -53,7 +53,7 @@ const groupByExpiry = (ingredients: any[]) => {
 export default function ExpiringSoonGrouped() {
   const {ingredients} = useIngredientContext();
 
-  const soonExpiring = ingredients.filter((item) => {
+  const soonExpiring = ingredients.filter(item => {
     const days = getDaysLeft(item);
     return days === null || days <= 10;
   });
@@ -75,7 +75,8 @@ export default function ExpiringSoonGrouped() {
                 <Text>Location: {item.location}</Text>
                 <Text>Confection: {item.confection}</Text>
                 <Text>
-                  Expiry: {item.selectedDate
+                  Expiry:{' '}
+                  {item.selectedDate
                     ? new Date(item.selectedDate).toDateString()
                     : item.estimate
                       ? `${item.estimate} days from now`

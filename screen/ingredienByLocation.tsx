@@ -1,10 +1,10 @@
 // components/IngredientsByLocation.tsx
 import React from 'react';
-import { ScrollView } from 'react-native';
-import { useIngredientContext } from '../context/IngredientContext';
-import { Card } from '../src/components/ui/card';
-import { Text } from '../src/components/ui/text';
-import { VStack } from '../src/components/ui/vstack';
+import {ScrollView} from 'react-native';
+import {useIngredientContext} from '../context/IngredientContext';
+import {Card} from '../src/components/ui/card';
+import {Text} from '../src/components/ui/text';
+import {VStack} from '../src/components/ui/vstack';
 
 // Helper: Group ingredients by their location
 const groupByLocation = (ingredients: any[]) => {
@@ -19,7 +19,7 @@ const groupByLocation = (ingredients: any[]) => {
 };
 
 export default function IngredientsByLocation() {
-  const { ingredients} = useIngredientContext();
+  const {ingredients} = useIngredientContext();
 
   const grouped = groupByLocation(ingredients);
 
@@ -35,7 +35,8 @@ export default function IngredientsByLocation() {
                 <Text>Category: {item.category}</Text>
                 <Text>Confection: {item.confection}</Text>
                 <Text>
-                  Expiry: {item.selectedDate
+                  Expiry:{' '}
+                  {item.selectedDate
                     ? item.selectedDate.toDateString()
                     : item.estimate
                       ? `${item.estimate} days from now`

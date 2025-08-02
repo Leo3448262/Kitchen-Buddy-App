@@ -1,10 +1,12 @@
 // utils/storage.ts
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ingredient } from '../context/IngredientContext';
+import {Ingredient} from '../context/IngredientContext';
 
 const STORAGE_KEY = 'ingredients_data';
 
-export const saveIngredients = async (ingredients: Ingredient[]): Promise<void> => {
+export const saveIngredients = async (
+  ingredients: Ingredient[],
+): Promise<void> => {
   try {
     const jsonValue = JSON.stringify(ingredients);
     await AsyncStorage.setItem(STORAGE_KEY, jsonValue);

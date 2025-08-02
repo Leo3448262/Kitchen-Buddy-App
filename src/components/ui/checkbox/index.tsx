@@ -1,36 +1,35 @@
-
 'use client';
-import { createCheckbox } from '@gluestack-ui/checkbox';
-import { IPrimitiveIcon, PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
-import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import {createCheckbox} from '@gluestack-ui/checkbox';
+import {IPrimitiveIcon, PrimitiveIcon, UIIcon} from '@gluestack-ui/icon';
+import type {VariantProps} from '@gluestack-ui/nativewind-utils';
+import {tva} from '@gluestack-ui/nativewind-utils/tva';
 import {
-    useStyleContext,
-    withStyleContext,
+  useStyleContext,
+  withStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from 'nativewind';
+import {cssInterop} from 'nativewind';
 import React from 'react';
-import type { TextProps, ViewProps } from 'react-native';
-import { Platform, Pressable, Text, View } from 'react-native';
+import type {TextProps, ViewProps} from 'react-native';
+import {Platform, Pressable, Text, View} from 'react-native';
 
 const IndicatorWrapper = React.forwardRef<
   React.ComponentRef<typeof View>,
   ViewProps
->(function IndicatorWrapper({ ...props }, ref) {
+>(function IndicatorWrapper({...props}, ref) {
   return <View {...props} ref={ref} />;
 });
 
 const LabelWrapper = React.forwardRef<
   React.ComponentRef<typeof Text>,
   TextProps
->(function LabelWrapper({ ...props }, ref) {
+>(function LabelWrapper({...props}, ref) {
   return <Text {...props} ref={ref} />;
 });
 
 const IconWrapper = React.forwardRef<
   React.ComponentRef<typeof PrimitiveIcon>,
   IPrimitiveIcon
->(function IconWrapper({ ...props }, ref) {
+>(function IconWrapper({...props}, ref) {
   return <UIIcon {...props} ref={ref} />;
 });
 
@@ -113,7 +112,7 @@ type ICheckboxProps = React.ComponentPropsWithoutRef<typeof UICheckbox> &
 const Checkbox = React.forwardRef<
   React.ComponentRef<typeof UICheckbox>,
   ICheckboxProps
->(function Checkbox({ className, size = 'md', ...props }, ref) {
+>(function Checkbox({className, size = 'md', ...props}, ref) {
   return (
     <UICheckbox
       className={checkboxStyle({
@@ -137,8 +136,8 @@ type ICheckboxIndicatorProps = React.ComponentPropsWithoutRef<
 const CheckboxIndicator = React.forwardRef<
   React.ComponentRef<typeof UICheckbox.Indicator>,
   ICheckboxIndicatorProps
->(function CheckboxIndicator({ className, ...props }, ref) {
-  const { size: parentSize } = useStyleContext(SCOPE);
+>(function CheckboxIndicator({className, ...props}, ref) {
+  const {size: parentSize} = useStyleContext(SCOPE);
 
   return (
     <UICheckbox.Indicator
@@ -161,8 +160,8 @@ type ICheckboxLabelProps = React.ComponentPropsWithoutRef<
 const CheckboxLabel = React.forwardRef<
   React.ComponentRef<typeof UICheckbox.Label>,
   ICheckboxLabelProps
->(function CheckboxLabel({ className, ...props }, ref) {
-  const { size: parentSize } = useStyleContext(SCOPE);
+>(function CheckboxLabel({className, ...props}, ref) {
+  const {size: parentSize} = useStyleContext(SCOPE);
   return (
     <UICheckbox.Label
       className={checkboxLabelStyle({
@@ -185,15 +184,15 @@ type ICheckboxIconProps = React.ComponentPropsWithoutRef<
 const CheckboxIcon = React.forwardRef<
   React.ComponentRef<typeof UICheckbox.Icon>,
   ICheckboxIconProps
->(function CheckboxIcon({ className, size, ...props }, ref) {
-  const { size: parentSize } = useStyleContext(SCOPE);
+>(function CheckboxIcon({className, size, ...props}, ref) {
+  const {size: parentSize} = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
       <UICheckbox.Icon
         ref={ref}
         {...props}
-        className={checkboxIconStyle({ class: className })}
+        className={checkboxIconStyle({class: className})}
         size={size}
       />
     );
@@ -205,7 +204,7 @@ const CheckboxIcon = React.forwardRef<
       <UICheckbox.Icon
         ref={ref}
         {...props}
-        className={checkboxIconStyle({ class: className })}
+        className={checkboxIconStyle({class: className})}
       />
     );
   }
@@ -231,8 +230,9 @@ CheckboxLabel.displayName = 'CheckboxLabel';
 CheckboxIcon.displayName = 'CheckboxIcon';
 
 export {
-    Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator,
-    CheckboxLabel
+  Checkbox,
+  CheckboxGroup,
+  CheckboxIcon,
+  CheckboxIndicator,
+  CheckboxLabel,
 };
-
- 

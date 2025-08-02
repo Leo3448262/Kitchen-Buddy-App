@@ -1,5 +1,11 @@
-import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { loadIngredients, saveIngredients } from '../utils/storage';
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import {loadIngredients, saveIngredients} from '../utils/storage';
 export const OPEN_SHELF_LIFE_DAYS: Record<string, number> = {
   dairy: 3,
   liquid: 5,
@@ -18,7 +24,7 @@ function adjustExpiryForOpening(ing: Ingredient): Ingredient {
   newExpiry.setDate(newExpiry.getDate() + days);
 
   if (!ing.selectedDate || newExpiry < new Date(ing.selectedDate)) {
-    return { ...ing, selectedDate: newExpiry, estimate: '' };
+    return {...ing, selectedDate: newExpiry, estimate: ''};
   }
   return ing;
 }
@@ -36,8 +42,6 @@ type Ingredient = {
   isFrozen?: boolean;
   isOpened?: boolean;
   openedAt?: Date | null;
-  
-
 };
 
 type IngredientContextType = {
@@ -48,11 +52,12 @@ type IngredientContextType = {
   setSelectedIngredient: (ingredient: Ingredient | null) => void;
 };
 
+const IngredientContext = createContext<IngredientContextType | undefined>(
+  undefined,
+);
 
-const IngredientContext = createContext<IngredientContextType | undefined>(undefined);
-
-const IngredientProvider = ({ children }: { children: ReactNode }) => {
- const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+const IngredientProvider = ({children}: {children: ReactNode}) => {
+  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [selectedIngredient, setSelectedIngredient] =
     useState<Ingredient | null>(null);
 
@@ -81,13 +86,13 @@ const IngredientProvider = ({ children }: { children: ReactNode }) => {
     } as Ingredient;
 
     const adjusted = adjustExpiryForOpening(base);
-    setIngredients((prev) => [...prev, adjusted]);
+    setIngredients(prev => [...prev, adjusted]);
   };
 
   const updateIngredient = (updated: Ingredient) => {
     const adjusted = adjustExpiryForOpening(updated);
-    setIngredients((prev) =>
-      prev.map((item) => (item.id === adjusted.id ? adjusted : item))
+    setIngredients(prev =>
+      prev.map(item => (item.id === adjusted.id ? adjusted : item)),
     );
   };
 
@@ -110,9 +115,10 @@ const IngredientProvider = ({ children }: { children: ReactNode }) => {
 export const useIngredientContext = () => {
   const context = useContext(IngredientContext);
   if (!context) {
-    throw new Error('useIngredientContext must be used within IngredientProvider');
+    throw new Error(
+      'useIngredientContext must be used within IngredientProvider',
+    );
   }
   return context;
 };
-export { Ingredient, IngredientProvider };
-
+export {Ingredient, IngredientProvider};

@@ -1,11 +1,10 @@
-
 'use client';
-import { setFlushStyles } from '@gluestack-ui/nativewind-utils/flush';
-import { OverlayProvider } from '@gluestack-ui/overlay';
-import { ToastProvider } from '@gluestack-ui/toast';
-import React, { useEffect, useLayoutEffect } from 'react';
-import { config } from './config';
-import { script } from './script';
+import {setFlushStyles} from '@gluestack-ui/nativewind-utils/flush';
+import {OverlayProvider} from '@gluestack-ui/overlay';
+import {ToastProvider} from '@gluestack-ui/toast';
+import React, {useEffect, useLayoutEffect} from 'react';
+import {config} from './config';
+import {script} from './script';
 
 export type ModeType = 'light' | 'dark' | 'system';
 
@@ -28,11 +27,11 @@ export function GluestackUIProvider({
   children?: React.ReactNode;
 }) {
   let cssVariablesWithMode = ``;
-  Object.keys(config).forEach((configKey) => {
+  Object.keys(config).forEach(configKey => {
     cssVariablesWithMode +=
       configKey === 'dark' ? `\n .dark {\n ` : `\n:root {\n`;
     const cssVariables = Object.keys(
-      config[configKey as keyof typeof config]
+      config[configKey as keyof typeof config],
     ).reduce((acc: string, curr: string) => {
       acc += `${curr}:${config[configKey as keyof typeof config][curr]}; `;
       return acc;
@@ -95,4 +94,3 @@ export function GluestackUIProvider({
     </>
   );
 }
-

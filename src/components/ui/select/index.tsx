@@ -1,36 +1,35 @@
-
 'use client';
 
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
-import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import {PrimitiveIcon, UIIcon} from '@gluestack-ui/icon';
+import type {VariantProps} from '@gluestack-ui/nativewind-utils';
+import {tva} from '@gluestack-ui/nativewind-utils/tva';
 import {
-    useStyleContext,
-    withStyleContext,
+  useStyleContext,
+  withStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { createSelect } from '@gluestack-ui/select';
-import { cssInterop } from 'nativewind';
+import {createSelect} from '@gluestack-ui/select';
+import {cssInterop} from 'nativewind';
 import React from 'react';
-import { Pressable, TextInput, View } from 'react-native';
+import {Pressable, TextInput, View} from 'react-native';
 import {
-    Actionsheet,
-    ActionsheetBackdrop,
-    ActionsheetContent,
-    ActionsheetDragIndicator,
-    ActionsheetDragIndicatorWrapper,
-    ActionsheetFlatList,
-    ActionsheetItem,
-    ActionsheetItemText,
-    ActionsheetScrollView,
-    ActionsheetSectionHeaderText,
-    ActionsheetSectionList,
-    ActionsheetVirtualizedList,
+  Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetFlatList,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetScrollView,
+  ActionsheetSectionHeaderText,
+  ActionsheetSectionList,
+  ActionsheetVirtualizedList,
 } from './select-actionsheet';
 
 const SelectTriggerWrapper = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
   React.ComponentProps<typeof Pressable>
->(function SelectTriggerWrapper({ ...props }, ref) {
+>(function SelectTriggerWrapper({...props}, ref) {
   return <Pressable {...props} ref={ref} />;
 });
 
@@ -39,11 +38,11 @@ const selectIconStyle = tva({
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
-      'xs': 'h-3.5 w-3.5',
-      'sm': 'h-4 w-4',
-      'md': 'h-[18px] w-[18px]',
-      'lg': 'h-5 w-5',
-      'xl': 'h-6 w-6',
+      xs: 'h-3.5 w-3.5',
+      sm: 'h-4 w-4',
+      md: 'h-[18px] w-[18px]',
+      lg: 'h-5 w-5',
+      xl: 'h-6 w-6',
     },
   },
 });
@@ -109,14 +108,14 @@ const UISelect = createSelect(
     FlatList: ActionsheetFlatList,
     SectionList: ActionsheetSectionList,
     SectionHeaderText: ActionsheetSectionHeaderText,
-  }
+  },
 );
 
-cssInterop(UISelect, { className: 'style' });
+cssInterop(UISelect, {className: 'style'});
 cssInterop(UISelect.Input, {
-  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
+  className: {target: 'style', nativeStyleToProp: {textAlign: true}},
 });
-cssInterop(SelectTriggerWrapper, { className: 'style' });
+cssInterop(SelectTriggerWrapper, {className: 'style'});
 
 cssInterop(PrimitiveIcon, {
   className: {
@@ -132,12 +131,12 @@ cssInterop(PrimitiveIcon, {
 });
 
 type ISelectProps = VariantProps<typeof selectStyle> &
-  React.ComponentProps<typeof UISelect> & { className?: string };
+  React.ComponentProps<typeof UISelect> & {className?: string};
 
 const Select = React.forwardRef<
   React.ComponentRef<typeof UISelect>,
   ISelectProps
->(function Select({ className, ...props }, ref) {
+>(function Select({className, ...props}, ref) {
   return (
     <UISelect
       className={selectStyle({
@@ -150,14 +149,14 @@ const Select = React.forwardRef<
 });
 
 type ISelectTriggerProps = VariantProps<typeof selectTriggerStyle> &
-  React.ComponentProps<typeof UISelect.Trigger> & { className?: string };
+  React.ComponentProps<typeof UISelect.Trigger> & {className?: string};
 
 const SelectTrigger = React.forwardRef<
   React.ComponentRef<typeof UISelect.Trigger>,
   ISelectTriggerProps
 >(function SelectTrigger(
-  { className, size = 'md', variant = 'outline', ...props },
-  ref
+  {className, size = 'md', variant = 'outline', ...props},
+  ref,
 ) {
   return (
     <UISelect.Trigger
@@ -167,20 +166,20 @@ const SelectTrigger = React.forwardRef<
         variant,
       })}
       ref={ref}
-      context={{ size, variant }}
+      context={{size, variant}}
       {...props}
     />
   );
 });
 
 type ISelectInputProps = VariantProps<typeof selectInputStyle> &
-  React.ComponentProps<typeof UISelect.Input> & { className?: string };
+  React.ComponentProps<typeof UISelect.Input> & {className?: string};
 
 const SelectInput = React.forwardRef<
   React.ComponentRef<typeof UISelect.Input>,
   ISelectInputProps
->(function SelectInput({ className, ...props }, ref) {
-  const { size: parentSize, variant: parentVariant } = useStyleContext();
+>(function SelectInput({className, ...props}, ref) {
+  const {size: parentSize, variant: parentVariant} = useStyleContext();
   return (
     <UISelect.Input
       className={selectInputStyle({
@@ -197,19 +196,19 @@ const SelectInput = React.forwardRef<
 });
 
 type ISelectIcon = VariantProps<typeof selectIconStyle> &
-  React.ComponentProps<typeof UISelect.Icon> & { className?: string };
+  React.ComponentProps<typeof UISelect.Icon> & {className?: string};
 
 const SelectIcon = React.forwardRef<
   React.ComponentRef<typeof UISelect.Icon>,
   ISelectIcon
->(function SelectIcon({ className, size, ...props }, ref) {
-  const { size: parentSize } = useStyleContext();
+>(function SelectIcon({className, size, ...props}, ref) {
+  const {size: parentSize} = useStyleContext();
   if (typeof size === 'number') {
     return (
       <UISelect.Icon
         ref={ref}
         {...props}
-        className={selectIconStyle({ class: className })}
+        className={selectIconStyle({class: className})}
         size={size}
       />
     );
@@ -222,7 +221,7 @@ const SelectIcon = React.forwardRef<
       <UISelect.Icon
         ref={ref}
         {...props}
-        className={selectIconStyle({ class: className })}
+        className={selectIconStyle({class: className})}
       />
     );
   }
@@ -260,10 +259,19 @@ const SelectSectionList = UISelect.SectionList;
 const SelectSectionHeaderText = UISelect.SectionHeaderText;
 
 export {
-    Select, SelectBackdrop,
-    SelectContent,
-    SelectDragIndicator,
-    SelectDragIndicatorWrapper, SelectFlatList, SelectIcon, SelectInput, SelectItem, SelectPortal, SelectScrollView, SelectSectionHeaderText, SelectSectionList, SelectTrigger, SelectVirtualizedList
+  Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectFlatList,
+  SelectIcon,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
+  SelectScrollView,
+  SelectSectionHeaderText,
+  SelectSectionList,
+  SelectTrigger,
+  SelectVirtualizedList,
 };
-
- 

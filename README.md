@@ -23,12 +23,12 @@ A React Native app built with **Expo Router** and **TypeScript** that helps user
 ├── tailwind.config.js # NativeWind configuration
 └── ...
 
-
 ## 🧱 UI Components
 
 Custom Gluestack UI components were manually created and stored under:
 src/components/ui/
 Used components:
+
 - `Box`
 - `Button`
 - `Card`
@@ -45,7 +45,6 @@ Used components:
 
 Used `AsyncStorage` for data persistence. Logic is implemented in:
 utils/storage.tsx
-
 
 ## 🎨 Styling
 
@@ -73,5 +72,3 @@ The app uses **NativeWind** for utility-first styling with Tailwind CSS syntax i
 - [AsyncStorage](https://react-native-async-storage.github.io/async-storage/)
 
 ## 🚀 Getting Started
-
-
